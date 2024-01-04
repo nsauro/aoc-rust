@@ -27,14 +27,13 @@ fn part_2(s: &str) -> i32 {
     let l = parts.next().and_then(to_int).unwrap();
     let w = parts.next().and_then(to_int).unwrap();
     let h = parts.next().and_then(to_int).unwrap();
-    let mut v : Vec<i32> = vec![l,w,h];
+    let mut v: Vec<i32> = vec![l, w, h];
     v.sort();
     let (left, _) = v.split_at(v.len() - 1);
-    let perim : i32 = left.iter().map(|x| 2 * x).sum();
+    let perim: i32 = left.iter().map(|x| 2 * x).sum();
     perim + v.iter().product::<i32>()
 }
 
 fn to_int(s: &str) -> Option<i32> {
     s.parse::<i32>().ok()
 }
-
