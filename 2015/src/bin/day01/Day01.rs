@@ -1,8 +1,6 @@
 use std::fs;
-use std::env;
 fn main() {
-    println!("Current directory: {:?}", env::current_dir().unwrap());
-    let s = fs::read_to_string("src/input.data").unwrap();
+    let s = fs::read_to_string("../../input.data").unwrap();
     println!("part1: {}",part1(&s));
     println!("part2: {}", part2(&s))
 
@@ -31,7 +29,7 @@ fn part2(s: &String) -> usize {
         }
     }
     return 0;
-    
+
 }
 
 
