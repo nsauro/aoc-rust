@@ -1,11 +1,13 @@
 use std::collections::HashMap;
 use std::fs;
+use aoc_2015::time_execution;
+
 fn main() {
     let input = fs::read_to_string("src/bin/day_03/input.data").unwrap();
-    let part1_res = part1(&input);
-    println!("part 1 result: {}", part1_res);
+    let part1_res =  time_execution!(part1, &input);
+    println!("part 1 result: {}",  part1_res);
 
-    let part2_res = part2(&input);
+    let part2_res = time_execution!(part2,&input);
     println!("part 2 result: {}", part2_res);
 
     fn part1(s: &String) -> i32 {
