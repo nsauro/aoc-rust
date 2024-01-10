@@ -14,15 +14,14 @@ fn main() {
     println!("{}", part2_res_no_rec);
 }
 
-
 #[tailcall]
 fn find_hash_with_prefix(i: i32, key: &str, prefix: &str) -> i32 {
     let s = format!("{}{}", key, i);
     let digest = md5::compute(s);
     let hash = format!("{:x}", digest);
-    if hash.starts_with(prefix){
+    if hash.starts_with(prefix) {
         i
-    }else{
+    } else {
         find_hash_with_prefix(i + 1, key, prefix)
     }
 }
@@ -34,9 +33,9 @@ fn find_hash_with_prefix_no_rec(key: &str, prefix: &str) -> i32 {
         let s = format!("{}{}", key, i);
         let digest = md5::compute(s);
         let hash = format!("{:x}", digest);
-        if hash.starts_with(prefix){
+        if hash.starts_with(prefix) {
             done = true;
-        }else{
+        } else {
             i += 1;
         }
     }

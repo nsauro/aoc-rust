@@ -1,7 +1,6 @@
 use std::collections::HashMap;
 use std::fs;
 
-
 fn main() {
     static VOWELS: [char; 5] = ['a', 'e', 'i', 'o', 'u'];
     static BAD: [&str; 4] = ["ab", "cd", "pq", "xy"];
@@ -14,23 +13,25 @@ fn main() {
     let part2_res = s.filter(|x| part_2(*x)).count();
     println!("part 2 result: {}", part2_res);
 
-
     fn part_1(s: &str) -> bool {
-        let chars : Vec<char> = s.chars().collect();
+        let chars: Vec<char> = s.chars().collect();
         let contains_vowels = s.chars().filter(|x| VOWELS.contains(&x)).count() >= 3;
         if contains_vowels {
-            let (cd, cb) = chars.windows(2).fold((false, false), |(contains_doubles, contains_bad), pair | {
-                let first = *pair.first().unwrap();
-                let second = *pair.last().unwrap();
-                let concatted = String::from_iter(pair);
-                let bla: &str = &concatted;
-                (
-                    contains_doubles || first == second,
-                    contains_bad || BAD.contains(&bla)
-                )
-            });
+            let (cd, cb) =
+                chars
+                    .windows(2)
+                    .fold((false, false), |(contains_doubles, contains_bad), pair| {
+                        let first = *pair.first().unwrap();
+                        let second = *pair.last().unwrap();
+                        let concatted = String::from_iter(pair);
+                        let bla: &str = &concatted;
+                        (
+                            contains_doubles || first == second,
+                            contains_bad || BAD.contains(&bla),
+                        )
+                    });
             cd && !cb
-        }else{
+        } else {
             contains_vowels //no vowels..bomb
         }
     }
@@ -45,7 +46,6 @@ fn main() {
             let mut s = first_char.to_string();
             s.push(second_char);
             acc_map.entry(s).or_insert(vec![]).push(first_index);
-
         });
 
         let contains_non_overlaps = acc_map.iter().any(|(_, v)| {
@@ -56,12 +56,12 @@ fn main() {
             }
         });
 
-        let contains_palindrome = s.chars().collect::<Vec<char>>().windows(3).any(|c| {
-            *c.first().unwrap() == *c.last().unwrap()
-        });
+        let contains_palindrome = s
+            .chars()
+            .collect::<Vec<char>>()
+            .windows(3)
+            .any(|c| *c.first().unwrap() == *c.last().unwrap());
 
         contains_non_overlaps && contains_palindrome
     }
-
-
 }
