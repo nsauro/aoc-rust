@@ -30,7 +30,7 @@ fn find_hash_with_prefix(i: i32, key: &str, prefix: &str) -> i32 {
 fn find_hash_with_prefix_no_rec(key: &str, prefix: &str) -> i32 {
     let mut i = 0;
     let mut done = false;
-    while(!done){
+    while !done {
         let s = format!("{}{}", key, i);
         let digest = md5::compute(s);
         let hash = format!("{:x}", digest);
