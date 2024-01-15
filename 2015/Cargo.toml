@@ -27,9 +27,14 @@ path = "src/bin/day_05/day_05.rs"
 name = "day_06"
 path = "src/bin/day_06/day_06.rs"
 
+[[bin]]
+name = "day_07"
+path = "src/bin/day_07/day_07.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 md5 = "0.7.0"
 tailcall = "0.1.5"
 regex = "1.10.2"
+once_cell = "1.19.0"
