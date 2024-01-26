@@ -31,7 +31,6 @@ fn process(registers: &mut HashMap<String, u32>, ins: Vec<String>) {
     println!("processing {} instructions", ins.len());
     ins.iter().for_each(|i| {
         if let Some(c) = SET_VALUE.captures(i) {
-            println!("doing set value {}", i);
             let key = c.get(2).unwrap().as_str().to_string();
             let value = c.get(1).unwrap().as_str().parse::<u32>().unwrap();
             registers.insert(key, value);
@@ -39,7 +38,6 @@ fn process(registers: &mut HashMap<String, u32>, ins: Vec<String>) {
             let s = c.get(1).unwrap().as_str();
             let d = c.get(2).unwrap().as_str();
             if let Some(v) = registers.get(s) {
-                println!("executing copy {}", i);
                 registers.insert(d.to_string(), *v);
             } else {
                 next.push(i.to_string());
@@ -49,7 +47,6 @@ fn process(registers: &mut HashMap<String, u32>, ins: Vec<String>) {
             let s = c.get(2).unwrap().as_str();
             let d = c.get(3).unwrap().as_str();
             if let (Some(v1), Some(v2)) = (registers.get(f), registers.get(s)) {
-                println!("executing and {}", i);
                 registers.insert(d.to_string(), v1 & v2);
             } else {
                 next.push(i.to_string());
@@ -58,7 +55,6 @@ fn process(registers: &mut HashMap<String, u32>, ins: Vec<String>) {
             let s = c.get(1).unwrap().as_str();
             let d = c.get(2).unwrap().as_str();
             if let Some(v) = registers.get(s) {
-                println!("executing and 1  {}", i);
                 registers.insert(d.to_string(), 1 & v);
             } else {
                 next.push(i.to_string());
@@ -68,7 +64,6 @@ fn process(registers: &mut HashMap<String, u32>, ins: Vec<String>) {
             let s = c.get(2).unwrap().as_str();
             let d = c.get(3).unwrap().as_str();
             if let (Some(v1), Some(v2)) = (registers.get(f), registers.get(s)) {
-                println!("executing or {}", i);
                 registers.insert(d.to_string(), v1 | v2);
             } else {
                 next.push(i.to_string());
@@ -78,7 +73,6 @@ fn process(registers: &mut HashMap<String, u32>, ins: Vec<String>) {
             let amount = c.get(2).unwrap().as_str().parse::<u32>().unwrap();
             let d = c.get(3).unwrap().as_str();
             if let Some(v) = registers.get(s) {
-                println!("executing lshift {}", i);
                 registers.insert(d.to_string(), v << amount);
             } else {
                 next.push(i.to_string());
@@ -88,7 +82,6 @@ fn process(registers: &mut HashMap<String, u32>, ins: Vec<String>) {
             let amount = c.get(2).unwrap().as_str().parse::<u32>().unwrap();
             let d = c.get(3).unwrap().as_str();
             if let Some(v) = registers.get(s) {
-                println!("executing rshift {}", i);
                 registers.insert(d.to_string(), v >> amount);
             } else {
                 next.push(i.to_string());
@@ -97,7 +90,6 @@ fn process(registers: &mut HashMap<String, u32>, ins: Vec<String>) {
             let s = c.get(1).unwrap().as_str();
             let d = c.get(2).unwrap().as_str();
             if let Some(v) = registers.get(s) {
-                println!("executing not {}", i);
                 registers.insert(d.to_string(), !v);
             } else {
                 next.push(i.to_string());

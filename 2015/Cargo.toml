@@ -35,6 +35,10 @@ path = "src/bin/day_07/day_07.rs"
 name = "day_08"
 path = "src/bin/day_08/day_08.rs"
 
+[[bin]]
+name = "day_09"
+path = "src/bin/day_09/day_09.rs"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -43,3 +47,4 @@ md5 = "0.7.0"
 tailcall = "0.1.5"
 regex = "1.10.2"
 once_cell = "1.19.0"
+itertools = "0.12.0"
